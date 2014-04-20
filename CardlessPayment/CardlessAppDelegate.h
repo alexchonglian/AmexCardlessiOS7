@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+
+@class InviteViewController;
 
 @interface CardlessAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) InviteViewController *inviteViewController;
 @property (strong, nonatomic) UIWindow *window;
 
 @end

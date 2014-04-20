@@ -19,6 +19,12 @@
 #define ORDERED_ENTRIES @"OrderedEntries"
 #define NEW_ORDER @"NewOrder"
 
+#define X_ADDBUTTON 270
+#define X_DELBUTTON 250
+#define Y_BUTTON 20
+#define WIDTH_BUTTON 20
+#define HEIGHT_BUTTON 20
+
 - (void) setEntries: (NSArray *) entries {
     _entries = entries;
     [self.tableView reloadData];
@@ -48,17 +54,28 @@
     cell.textLabel.text = [self titleForRow:indexPath.row];
     cell.detailTextLabel.text = [self subtitleForRow: indexPath.row];
     cell.imageView.image = [self imageForRow: indexPath.row];
-    /*
-     UIStepper* stepper = [[UIStepper alloc] init];
-     stepper.frame = CGRectMake(210, 40, 40, 5);
-     */
+
+    //UIStepper* stepper = [[UIStepper alloc] init];
+    //stepper.frame = CGRectMake(210, 20, 20, 20);
+
     
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addButton.frame = CGRectMake(270, 30, 40, 25);
-    [addButton setTitle:@"+1" forState:UIControlStateNormal];
+    addButton.frame = CGRectMake(X_ADDBUTTON, Y_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+    [addButton setTitle:@"+" forState:UIControlStateNormal];
     [addButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
     addButton.tag = indexPath.row;
-    [cell addSubview:addButton];
+    
+    UIButton *delButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    delButton.frame = CGRectMake(X_DELBUTTON, Y_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+    [delButton setTitle:@"-" forState:UIControlStateNormal];
+    [delButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
+    delButton.tag = indexPath.row;
+    
+    
+    
+    
+    [cell.contentView addSubview:addButton];
+    [cell.contentView addSubview:delButton];
     //[cell.contentView addSubview: stepper];
     
     return cell;

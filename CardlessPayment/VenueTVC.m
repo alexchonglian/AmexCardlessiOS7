@@ -9,7 +9,8 @@
 #import "VenueTVC.h"
 #import "MenuTVC.h"
 
-@interface VenueTVC ()
+@interface VenueTVC () <UISearchBarDelegate>
+@property (weak, nonatomic) IBOutlet UISearchBar *searchVenue;
 
 @end
 
@@ -57,9 +58,27 @@
     }
 }
 
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    NSLog(@"touches");
+    [self.searchVenue resignFirstResponder];
+}
+
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.searchVenue.delegate = self;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.venues = @[
                     @{
@@ -82,6 +101,7 @@
                         }
                     ];
 }
+
 
 
 
