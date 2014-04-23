@@ -10,8 +10,8 @@
 
 @interface MenuDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *numberLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *quantity;
+@property (weak, nonatomic) IBOutlet UILabel *price;
 @end
 
 @implementation MenuDetailViewController
@@ -21,18 +21,37 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    if (self.imageURI) {
-        [self updateImage];
+    if (self.entry) {
+        [self updateUI];
     }
 }
 
-- (void)setImageURI:(NSString *)imageURI {
-    _imageURI = imageURI;
-    [self updateImage];
+- (IBAction)quantityChangedByStepper:(UIStepper *)sender {
+    int val = (int)sender.value;
+    self.quantity.text = [NSString stringWithFormat:@"Qty: %d", val];
+    double price = [self.entry[@"price"] doubleValue];
+    self.price.text = [NSString stringWithFormat:@"Total: $%.02f", price*val];
 }
 
-- (void)updateImage {
-    self.imageView.image = [UIImage imageNamed:self.imageURI];
+- (IBAction)addToCart {
+    NSLog(@"entry added to cart");
+    [[[[[self tabBarController] tabBar] items]
+      objectAtIndex:1] setBadgeValue:@"1"];
+}
+
+- (IBAction)cancelOrderEntry {
+    self.quantity.text = @"Qty: 0";
+    self.price.text = @"Total: $0.00";
+    NSLog(@"the order of this entry is cancelled");
+}
+
+- (void)setEntry:(NSDictionary *)entry {
+    _entry = entry;
+    [self updateUI];
+}
+
+- (void)updateUI {
+    self.imageView.image = [UIImage imageNamed:self.entry[@"image"]];
 }
 
 

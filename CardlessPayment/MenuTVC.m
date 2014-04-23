@@ -40,7 +40,8 @@
 
 - (NSString *) subtitleForRow: (NSUInteger) row {
     // NSLog(@"%@", self.entries[row][@"price"]);
-    return [self.entries[row][@"price"] description];
+    return [NSString stringWithFormat:@"$%@", [self.entries[row][@"price"] description]];
+    
 }
 
 - (UIImage *) imageForRow: (NSUInteger) row {
@@ -71,11 +72,21 @@
     [delButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
     delButton.tag = indexPath.row;
     
+    // get the scrolling position of the tableview
+    // tableView.contentOffset.y;
+    
+    // get the relative location of tableviewcell in tableview
+    
+    /*
+    CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 180, 20)];
+    label.text = [NSString stringWithFormat:@"%.02f", rectInTableView.origin.y];
+    [cell.contentView addSubview:label];
+     */
     
     
-    
-    [cell.contentView addSubview:addButton];
-    [cell.contentView addSubview:delButton];
+    //[cell.contentView addSubview:addButton];
+    //[cell.contentView addSubview:delButton];
     //[cell.contentView addSubview: stepper];
     
     return cell;
@@ -109,10 +120,10 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"Show Entry Detail"]) {
-                if ([segue.destinationViewController respondsToSelector:@selector(setImageURI:)]) {
-                    NSString *uri = [self.entries[indexPath.row][@"image"] description];
-                    [segue.destinationViewController performSelector:@selector(setImageURI:) withObject:uri];
+                if ([segue.destinationViewController respondsToSelector:@selector(setEntry:)]) {
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
+                    NSArray *chosenEntry = self.entries[indexPath.row];
+                    [segue.destinationViewController performSelector:@selector(setEntry:) withObject:chosenEntry];
                 }
             }
         }
@@ -120,10 +131,14 @@
 }
 
 
+
+
+
 - (void)viewDidLoad
 
 {
     [super viewDidLoad];
+    self.tableView.contentOffset = CGPointMake(0.0, 44.0);
 
 }
 

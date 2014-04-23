@@ -8,7 +8,7 @@
 
 #import "OrderTVC.h"
 
-@interface OrderTVC () <UITableViewDataSource>
+@interface OrderTVC () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 

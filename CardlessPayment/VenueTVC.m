@@ -78,6 +78,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.contentOffset = CGPointMake(0.0, 44.0);
     self.searchVenue.delegate = self;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.venues = @[
@@ -114,7 +115,7 @@
                  
                  @"image": @"mushroom_risotto.jpg",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -126,7 +127,7 @@
                  
                  @"image": @"full_breakfast.jpg",
                  
-                 @"price": @"$9.25",
+                 @"price": @"9.25",
                  
                  @"rating": @"4.7"
                  
@@ -138,7 +139,7 @@
                  
                  @"image": @"hamburger.jpg",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -150,7 +151,7 @@
                  
                  @"image": @"egg_benedict.jpg",
                  
-                 @"price": @"$4.25",
+                 @"price": @"4.25",
                  
                  @"rating": @"4.7"
                  
@@ -162,7 +163,7 @@
                  
                  @"image": @"ham_and_egg_sandwich.jpg",
                  
-                 @"price": @"$6.15",
+                 @"price": @"6.15",
                  
                  @"rating": @"4.7"
                  
@@ -174,7 +175,7 @@
                  
                  @"image": @"creme_brelee.jpg",
                  
-                 @"price": @"$6.25",
+                 @"price": @"6.25",
                  
                  @"rating": @"4.7"
                  
@@ -186,7 +187,7 @@
                  
                  @"image": @"white_chocolate_donut.jpg",
                  
-                 @"price": @"$3.20",
+                 @"price": @"3.20",
                  
                  @"rating": @"4.7"
                  
@@ -198,7 +199,7 @@
                  
                  @"image": @"vegetable_curry.jpg",
                  
-                 @"price": @"$7.75",
+                 @"price": @"7.75",
                  
                  @"rating": @"4.7"
                  
@@ -210,7 +211,7 @@
                  
                  @"image": @"instant_noodle_with_egg.jpg",
                  
-                 @"price": @"$9.60",
+                 @"price": @"9.60",
                  
                  @"rating": @"4.7"
                  
@@ -222,7 +223,7 @@
                  
                  @"image": @"noodle_with_bbq_pork.jpg",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -234,7 +235,7 @@
                  
                  @"image": @"green_tea.jpg",
                  
-                 @"price": @"$2.80",
+                 @"price": @"2.80",
                  
                  @"rating": @"4.7"
                  
@@ -246,7 +247,7 @@
                  
                  @"image": @"thai_shrimp_cake.jpg",
                  
-                 @"price": @"$13.25",
+                 @"price": @"13.25",
                  
                  @"rating": @"4.7"
                  
@@ -258,7 +259,7 @@
                  
                  @"image": @"angry_birds_cake.jpg",
                  
-                 @"price": @"$16.00",
+                 @"price": @"16.00",
                  
                  @"rating": @"4.7"
                  
@@ -270,7 +271,7 @@
                  
                  @"image": @"ham_and_cheese_panini.jpg",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -288,7 +289,7 @@
                  
                  @"image": @"burrito.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -299,7 +300,7 @@
                  
                  @"image": @"vege_burrito.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -310,7 +311,7 @@
                  
                  @"image": @"taco.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -321,7 +322,7 @@
                  
                  @"image": @"grills.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -332,7 +333,7 @@
                  
                  @"image": @"chips2.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -349,7 +350,7 @@
                  
                  @"image": @"big_philly_cheesesteak.png",
                  
-                 @"price": @"$7.85",
+                 @"price": @"7.85",
                  
                  @"rating": @"4.7"
                  
@@ -361,7 +362,7 @@
                  
                  @"image": @"black_forest_ham.png",
                  
-                 @"price": @"$9.25",
+                 @"price": @"9.25",
                  
                  @"rating": @"4.7"
                  
@@ -373,7 +374,7 @@
                  
                  @"image": @"buffalo_chicken.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -385,7 +386,7 @@
                  
                  @"image": @"chicken_bacon_ranch_melt.png",
                  
-                 @"price": @"$4.25",
+                 @"price": @"4.25",
                  
                  @"rating": @"4.7"
                  
@@ -397,7 +398,7 @@
                  
                  @"image": @"chips.png",
                  
-                 @"price": @"$6.25",
+                 @"price": @"6.25",
                  
                  @"rating": @"4.7"
                  
@@ -409,7 +410,7 @@
                  
                  @"image": @"coca_cola.png",
                  
-                 @"price": @"$3.20",
+                 @"price": @"3.20",
                  
                  @"rating": @"4.7"
                  
@@ -421,7 +422,7 @@
                  
                  @"image": @"coffee.png",
                  
-                 @"price": @"$7.75",
+                 @"price": @"7.75",
                  
                  @"rating": @"4.7"
                  
@@ -433,7 +434,7 @@
                  
                  @"image": @"cold_cut_cumbo.png",
                  
-                 @"price": @"$9.60",
+                 @"price": @"9.60",
                  
                  @"rating": @"4.7"
                  
@@ -445,7 +446,7 @@
                  
                  @"image": @"cookies.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -457,7 +458,7 @@
                  
                  @"image": @"egg_cheese.png",
                  
-                 @"price": @"$2.80",
+                 @"price": @"2.80",
                  
                  @"rating": @"4.7"
                  
@@ -469,7 +470,7 @@
                  
                  @"image": @"iced_tea.png",
                  
-                 @"price": @"$13.25",
+                 @"price": @"13.25",
                  
                  @"rating": @"4.7"
                  
@@ -481,7 +482,7 @@
                  
                  @"image": @"italian_bmt.png",
                  
-                 @"price": @"$16.00",
+                 @"price": @"16.00",
                  
                  @"rating": @"4.7"
                  
@@ -493,7 +494,7 @@
                  
                  @"image": @"meatball_marinara.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -505,7 +506,7 @@
                  
                  @"image": @"roast_beef.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -517,7 +518,7 @@
                  
                  @"image": @"spicy_italian.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -529,7 +530,7 @@
                  
                  @"image": @"steak_cheese.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -541,7 +542,7 @@
                  
                  @"image": @"subway_club.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -553,7 +554,7 @@
                  
                  @"image": @"subway_melt.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -565,7 +566,7 @@
                  
                  @"image": @"sweet_onion_chicken_teriyaki.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -577,7 +578,7 @@
                  
                  @"image": @"tuna",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -589,7 +590,7 @@
                  
                  @"image": @"turkey_breast.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  
@@ -601,7 +602,7 @@
                  
                  @"image": @"veggie_delite.png",
                  
-                 @"price": @"$12.25",
+                 @"price": @"12.25",
                  
                  @"rating": @"4.7"
                  

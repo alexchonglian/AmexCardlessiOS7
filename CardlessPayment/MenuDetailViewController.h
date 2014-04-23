@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuDetailViewController : UIViewController
-@property (nonatomic, strong) NSString *imageURI;
+@property (nonatomic, strong) NSDictionary *entry;
 @end

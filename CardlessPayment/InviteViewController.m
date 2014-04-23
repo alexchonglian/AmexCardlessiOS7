@@ -13,6 +13,7 @@
 @interface InviteViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *selectedFriendsView;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
+@property (retain, nonatomic) NSArray *friendsChosen;// of NSString
 - (void)fillTextBoxAndDismiss:(NSString *)text;
 @end
 
@@ -57,7 +58,6 @@
     }
     
     if (self.friendPickerController == nil) {
-        // Create friend picker, and get data loaded into it.
         self.friendPickerController = [[FBFriendPickerViewController alloc] init];
         self.friendPickerController.title = @"Pick Friends";
         self.friendPickerController.delegate = self;
@@ -71,9 +71,6 @@
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
     NSMutableString *text = [[NSMutableString alloc] init];
-    
-    // we pick up the users from the selection, and create a string that we use to update the text view
-    // at the bottom of the display; note that self.selection is a property inherited from our base class
     for (id<FBGraphUser> user in self.friendPickerController.selection) {
         if ([text length]) {
             [text appendString:@", "];
