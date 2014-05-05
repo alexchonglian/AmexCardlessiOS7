@@ -8,6 +8,7 @@
 
 #import "MenuTVC.h"
 #import "MenuDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MenuTVC ()
 
@@ -24,6 +25,9 @@
 #define Y_BUTTON 20
 #define WIDTH_BUTTON 20
 #define HEIGHT_BUTTON 20
+
+
+
 
 - (void) setEntries: (NSArray *) entries {
     _entries = entries;
@@ -61,16 +65,50 @@
 
     
     UIButton *addButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    addButton.frame = CGRectMake(X_ADDBUTTON, Y_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+    addButton.layer.cornerRadius = 5;
+    addButton.layer.masksToBounds = YES;
+    addButton.frame = CGRectMake(100, 5, 20, 20);
+
     [addButton setTitle:@"+" forState:UIControlStateNormal];
+    [addButton setBackgroundColor:[UIColor whiteColor]];
     [addButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
     addButton.tag = indexPath.row;
     
+    
+    
     UIButton *delButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    delButton.frame = CGRectMake(X_DELBUTTON, Y_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+    delButton.layer.cornerRadius = 5;
+    delButton.layer.masksToBounds = YES;
+    delButton.frame = CGRectMake(50, 5, 20, 20);
     [delButton setTitle:@"-" forState:UIControlStateNormal];
+    [delButton setBackgroundColor:[UIColor whiteColor]];
     [delButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
     delButton.tag = indexPath.row;
+    
+    
+    UILabel *qty = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 20, 20)];
+    qty.layer.cornerRadius = 5;
+    qty.layer.masksToBounds = YES;
+    //[qty setBackgroundColor:[UIColor whiteColor]];
+    qty.text = @" 0";
+    
+    UIButton *collapseButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    //addButton.frame = CGRectMake(X_ADDBUTTON, Y_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+    collapseButton.frame = CGRectMake(5, 5, 40, 20);
+    
+    [collapseButton setTitle:@">" forState:UIControlStateNormal];
+    [collapseButton setBackgroundColor:[UIColor whiteColor]];
+    [collapseButton addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
+    collapseButton.tag = indexPath.row;
+    
+    UIView *manipulator = [[UIView alloc] initWithFrame:CGRectMake(180, 34, 128, 30)];
+    //[manipulator setUserInteractionEnabled:YES];
+    manipulator.opaque = YES;
+    [manipulator setBackgroundColor:[UIColor grayColor]];
+    //[manipulator addTarget:self action:@selector(printOut:) forControlEvents:UIControlEventTouchUpInside];
+    manipulator.tag = indexPath.row;
+    manipulator.layer.cornerRadius = 8;
+    manipulator.layer.masksToBounds = YES;
     
     // get the scrolling position of the tableview
     // tableView.contentOffset.y;
@@ -88,6 +126,13 @@
     //[cell.contentView addSubview:addButton];
     //[cell.contentView addSubview:delButton];
     //[cell.contentView addSubview: stepper];
+    [cell.contentView addSubview:manipulator];
+    
+    [manipulator addSubview:addButton];
+    [manipulator addSubview:delButton];
+    [manipulator addSubview:qty];
+    [manipulator addSubview:collapseButton];
+    //manipulator.hidden = YES;
     
     return cell;
 }

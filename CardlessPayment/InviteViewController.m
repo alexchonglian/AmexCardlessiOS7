@@ -13,28 +13,31 @@
 @interface InviteViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *selectedFriendsView;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
-@property (retain, nonatomic) NSArray *friendsChosen;// of NSString
+@property (retain, nonatomic) NSMutableArray *friendsChosen;// of NSString
 - (void)fillTextBoxAndDismiss:(NSString *)text;
 @end
+
 
 @implementation InviteViewController
 #pragma mark View lifecycle
 
+#define TABLE @"Table"
+
 - (void)viewDidLoad {
+    self.friendsChosen = [[NSMutableArray alloc] init];
     [super viewDidLoad];
 }
 
 - (void)viewDidUnload {
     self.selectedFriendsView = nil;
     self.friendPickerController = nil;
-    
+    self.friendsChosen = nil;
     [super viewDidUnload];
 }
 
 #pragma mark UI handlers
 
 - (IBAction)pickFriendsButtonClick:(id)sender {
-    // FBSample logic
     // if the session is open, then load the data for our view controller
     if (!FBSession.activeSession.isOpen) {
         // if the session is closed, then we open it here, and establish a handler for state changes
@@ -70,19 +73,23 @@
 }
 
 - (void)facebookViewControllerDoneWasPressed:(id)sender {
+    self.friendsChosen = [[NSMutableArray alloc] init];
+    
     NSMutableString *text = [[NSMutableString alloc] init];
     for (id<FBGraphUser> user in self.friendPickerController.selection) {
         if ([text length]) {
             [text appendString:@", "];
         }
         [text appendString:user.name];
+        [self.friendsChosen addObject:user.name];
+        
     }
-    
-    [self fillTextBoxAndDismiss:text.length > 0 ? text : @"<None>"];
+    [self addChosenFriendsToUserDefault];
+    [self fillTextBoxAndDismiss:text.length > 0 ? text : nil];
 }
 
 - (void)facebookViewControllerCancelWasPressed:(id)sender {
-    [self fillTextBoxAndDismiss:@"<Cancelled>"];
+    [self fillTextBoxAndDismiss:nil];
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
@@ -94,6 +101,20 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     return YES;
+}
+
+
+- (void)addChosenFriendsToUserDefault {
+    
+    //NSMutableArray *table = [[[NSUserDefaults standardUserDefaults] arrayForKey:TABLE] mutableCopy];
+    //if (!table) table = [[NSMutableArray alloc] init];
+    if (self.friendsChosen) {
+        NSLog(@"%@", self.friendsChosen);
+        [[NSUserDefaults standardUserDefaults] setObject:self.friendsChosen forKey:TABLE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        NSLog(@"No FB Friend is chosen");
+    }
 }
 
 @end
