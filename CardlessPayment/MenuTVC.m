@@ -11,7 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface MenuTVC ()
-
+@property (nonatomic, strong) NSMutableArray *quantities;
 @end
 
 @implementation MenuTVC
@@ -193,6 +193,13 @@
             if (qty > 0) {
                 [expandBtn setTitle:[NSString stringWithFormat:@"%d", qty] forState:UIControlStateNormal];
                 [expandBtn setBackgroundColor:[UIColor redColor]];
+                NSString *badgeString = [[[[[self tabBarController] tabBar] items]
+                                          objectAtIndex:1] badgeValue];
+                int badgeValue = [badgeString intValue];
+                badgeValue += 1;
+                badgeString = [NSString stringWithFormat:@"%d", badgeValue];
+                [[[[[self tabBarController] tabBar] items]
+                  objectAtIndex:1] setBadgeValue:badgeString];
             } else {
                 [expandBtn setTitle:@"+" forState:UIControlStateNormal];
                 [expandBtn setBackgroundColor:[UIColor colorWithRed:(CGFloat)0.8f green:(CGFloat)0.8f blue:(CGFloat)0.8f alpha:(CGFloat)1.0f]];
@@ -280,7 +287,7 @@
 {
     [super viewDidLoad];
     self.tableView.contentOffset = CGPointMake(0.0, 44.0);
-
+    self.quantities = [NSMutableArray arrayWithCapacity:[self.entries count]];
 }
 
 

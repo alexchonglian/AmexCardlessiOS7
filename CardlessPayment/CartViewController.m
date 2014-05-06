@@ -31,6 +31,14 @@
     return self;
 }
 
+
+- (IBAction)AddDiner:(id)sender {
+    [self.tabBarController setSelectedIndex:3];
+    //[self tabBarController].selectedViewController = [[self tabBarController].viewControllers objectAtIndex:0];
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
